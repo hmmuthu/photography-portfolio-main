@@ -13,6 +13,13 @@
   <link rel="stylesheet" href="styles.css" />
   <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      emailjs.init("GIsHDwik915ebWcfI");
+    })();
+  </script>
   <!-- Start - Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -80,25 +87,25 @@
         <div class="max-w-screen-md">
           <h1 class="text-4xl pt-10 pb-8"><b>CONTACT</b></h1>
 
-          <form class="space-y-8" action="mailto:info@example.com">
+          <form class="space-y-8" id="contact-form" onsubmit="return sendEmail(event)">
             <div>
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your
                 email</label>
-              <input type="email" id="email"
+              <input type="email" id="email" name="email"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-900 dark:border-neutral-800 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                 placeholder="example@gmail.com" required />
             </div>
             <div>
               <label for="subject"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subject</label>
-              <input type="text" id="subject"
+              <input type="text" id="subject" name="subject"
                 class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-neutral-900 dark:border-neutral-800 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                 placeholder="Let me know how I can help you" required />
             </div>
             <div class="sm:col-span-2">
               <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your
                 message</label>
-              <textarea id="message" rows="6"
+              <textarea id="message" name="message" rows="6"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-neutral-900 dark:border-neutral-800 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Leave a comment..." required></textarea>
             </div>
@@ -130,7 +137,7 @@
           </p>
           <div class="flex mx-auto">
             <div class="mx-auto space-x-6 flex mt-8 text-[rgb(128,65,138)] dark:text-[rgb(128,65,138)]">
-              <a class="transition duration-300 hover:opacity-75" href="https://www.instagram.com/harini.muthu" target="_blank"
+              <a class="transition duration-300 hover:opacity-75" href="https://www.instagram.com/photography.harini_m" target="_blank"
                 rel="noreferrer">
                 <span class="sr-only"> Instagram </span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -139,7 +146,7 @@
                     clipRule="evenodd" />
                 </svg>
               </a>
-              <a class="transition duration-300 hover:opacity-75" href="https://www.linkedin.com/in/harini-muthu-90349a218/" target="_blank"
+              <a class="transition duration-300 hover:opacity-75" href="https://www.linkedin.com/in/harini-muthu-90349a218" target="_blank"
                 rel="noreferrer">
                 <span class="sr-only">LinkedIn</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -155,6 +162,27 @@
   </footer>
   <script src="fade_in.js"></script>
   <script src="menu.js"></script>
+  <script>
+    function sendEmail(e) {
+      e.preventDefault();
+      
+      const templateParams = {
+        from_email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+      };
+
+      emailjs.send('service_1osr5of', 'template_jnenjwq', templateParams)
+        .then(function(response) {
+          alert('Email sent successfully!');
+          document.getElementById('contact-form').reset();
+        }, function(error) {
+          alert('Failed to send email. Please try again.');
+        });
+
+      return false;
+    }
+  </script>
 </body>
 
 </html>
