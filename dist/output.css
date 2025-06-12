@@ -995,7 +995,11 @@ video {
 }
 
 .font-signika {
-  font-family: Signika, sans-serif;
+  font-family: 'Signika', sans-serif;
+}
+
+.font-limelight {
+  font-family: 'Limelight', cursive;
 }
 
 .text-2xl {

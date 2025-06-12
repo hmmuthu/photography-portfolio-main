@@ -1,5 +1,4 @@
 /* ... existing code ... */
-
 .pagination {
   display: flex;
   justify-content: center;
@@ -24,7 +23,7 @@
 }
 
 .pagination a.active {
-  background-color: #c492e4;
+  background-color: #bc88dd;
   color: black;
   font-weight: bold;
 }
